@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+HOME
+{% endblock %}
+
+{# contenido #}
+{% block body %}
+<header>
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+          <!-- Slide One - Set the background image for this slide in the line below -->
+          <div class="carousel-item active" style="background-image: url({{ asset('img/slider.jpg') }})">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>BarberZone</h3>
+              <p>Relájate, ahora tu pelo está en nuestras manos</p>
+            </div>
+          </div>
+          <!-- Slide Two - Set the background image for this slide in the line below -->
+          <div class="carousel-item" style="background-image: url({{ asset('img/slider1.jpg') }})">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Comodidad</h3>
+              <p>Los mejores instrumentos para cuidar tu pelo</p>
+            </div>
+          </div>
+          <!-- Slide Three - Set the background image for this slide in the line below -->
+          <div class="carousel-item" style="background-image: url({{ asset('img/slider2.jpg') }})">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Seguridad</h3>
+              <p>Profesionales y altos conocedores se encargarán de tí</p>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container">
+          <!-- Portfolio Section -->
+      <h1 class="my-4">Nuestros mejores cortes</h1>
+      
+      <!-- cortes es enviado desde el controller homepageaction a través del render -->
+      <div class="row">
+      {% for clientes in cortes %} 
+
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+          <div class="card h-100">
+            <!--id porque fue declarado así en el controller, no entendí bien lo de cliente.foto, el ~ es como concatena twig -->
+            <a href="{{ path('corte',{ 'id':clientes.id }) }}"><img class="card-img-top" src={% if clientes.foto|length > 0 %}"{{ asset(corteImg~clientes.foto) }}"{% else %}"http://placehold.it/700x400"{% endif %} alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="{{ path('corte',{ 'id':clientes.id }) }}"> {{clientes.nombre}}</a>
+              </h4>
+              <p class="card-text">{{clientes.descripcion}}</p>
+            </div>
+          </div>
+        </div>
+
+      {% endfor %}
+     
+      </div>
+      <!-- /.row -->
+    </div>  
+
+{% endblock %}

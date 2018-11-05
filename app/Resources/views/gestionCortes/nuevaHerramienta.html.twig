@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'form/corteForm.html.twig' %}
+{% block title %}
+Nueva herramienta
+{% endblock %}
+
+{% block body %}
+<!-- page content -->
+<div class= "container">
+<h1 class "mt-4 mb-3">Nueva herramienta</h1>
+    <div class= "row">
+        <div class="col-md-8">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

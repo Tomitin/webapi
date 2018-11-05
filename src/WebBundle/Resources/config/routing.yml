@@ -1,0 +1,55 @@
+web_homepage:
+    path:     /
+    defaults: { _controller: WebBundle:Default:homepage }
+
+corte:
+    path:     /corte/{id}
+    defaults: { _controller: WebBundle:Default:corte }
+
+corte2:
+    path:     /corte
+    defaults: { _controller: WebBundle:Default:corte }
+
+categoria:
+    path:     /categoria/{id}
+    defaults: { _controller: WebBundle:Default:categoria }
+
+categoria2:
+    path:     /categoria
+    defaults: { _controller: WebBundle:Default:categoria }
+
+herramienta:
+    path:     /herramienta/{id}
+    defaults: { _controller: WebBundle:Default:herramienta }
+
+herramienta2:
+    path:     /herramienta
+    defaults: { _controller: WebBundle:Default:herramienta }    
+
+contactar:
+    path:     /contactar/{sitio}
+    defaults: { _controller: WebBundle:Default:contactar }
+
+contactar2:
+    path:     /contactar
+    defaults: { _controller: WebBundle:Default:contactar }
+
+nosotros:
+    path:     /nosotros
+    defaults: { _controller: WebBundle:Default:nosotros }
+    
+welcome:
+    path:     /
+    defaults: { _controller: WebBundle:Default:homepage } 
+
+nuevoCorte:
+    path:     gestioncorte/nuevocorte
+    defaults: { _controller: WebBundle:GestionCortes:nuevoCorte }    
+
+nuevaCat:
+    path:     gestioncorte/nuevacategoria
+    defaults: { _controller: WebBundle:GestionCortes:nuevaCat }
+    
+nuevaHerramienta:
+    path:     gestioncorte/nuevaherramienta
+    defaults: { _controller: WebBundle:GestionCortes:nuevaHerramienta }        

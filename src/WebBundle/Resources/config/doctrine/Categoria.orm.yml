@@ -1,0 +1,25 @@
+WebBundle\Entity\Categoria:
+    type: entity
+    table: null
+    repositoryClass: WebBundle\Repository\CategoriaRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nombre:
+            type: string
+            length: '128'
+        descripcion:
+            type: text
+        foto:
+            type: string
+            length: '255'
+    oneToMany:
+        cortes:
+            targetEntity: Corte
+            mappedBy: categoria
+
+    lifecycleCallbacks: {  }

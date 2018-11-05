@@ -1,0 +1,44 @@
+WebBundle\Entity\Corte:
+    type: entity
+    table: null
+    repositoryClass: WebBundle\Repository\CorteRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nombre:
+            type: string
+            length: 255
+        descripcion:
+            type: text
+        foto:
+            type: string
+            length: 255
+        fechaCreacion:
+            type: datetime
+        top:
+            type: boolean
+    manyToOne:
+        categoria:
+            targetEntity: WebBundle\Entity\Categoria
+            inversedBy: cortes
+            joinColumn:
+                name: categoria_id
+                referencedColumnName: id     
+    
+    manyToMany:
+        herramientas:
+            targetEntity: WebBundle\Entity\Herramienta
+            joinTable:  
+                name: herramientas_cortes
+                joinColumns:
+                    corte_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    herramienta_id:
+                        referencedColumnName: id
+        
+    lifecycleCallbacks: {  }
