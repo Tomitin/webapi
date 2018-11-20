@@ -1,0 +1,30 @@
+WebBundle\Entity\Reserva:
+    type: entity
+    table: null
+    repositoryClass: WebBundle\Repository\ReservaRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        fecha:
+            type: date
+        horario:
+            type: time
+            unique: true
+        comensales:
+            type: integer
+        observaciones:
+            type: text
+            nullable: true
+    manyToOne:
+        usuario:
+            targetEntity: WebBundle\Entity\Usuario
+            inversedBy: reservas
+            joinColumn:
+                name: usuario_id
+                referencedColumnName: id    
+
+    lifecycleCallbacks: {  }

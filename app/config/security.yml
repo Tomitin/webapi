@@ -1,11 +1,27 @@
 # To get started with security, check out the documentation:
 # https://symfony.com/doc/current/security.html
 security:
+    encoders:
+        WebBundle\Entity\Usuario: bcrypt
+        Symfony\Component\Security\Core\User\User: plaintext
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER 
 
+        
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         in_memory:
-            memory: ~
+            memory:
+                users:
+                    admin@gmail.com:
+                        password: pepo123
+                        roles: 'ROLE_ADMIN'        
+        nuestro_provider_db:
+            entity:
+                class: WebBundle:Usuario
+                property: username
+                # if you're using multiple entity managers
+                # manager_name: customer
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -15,6 +31,22 @@ security:
 
         main:
             anonymous: ~
+            provider: nuestro_provider_db
+            form_login:
+                login_path: login
+                check_path: login     
+            logout:
+                path:   /logout/
+                target: /
+            remember_me:
+                secret:   '%secret%'
+                lifetime: 2628000 # 1 month in seconds
+                path:     /      
+    access_control:
+            # require ROLE_ADMIN for /admin*
+        - { path: ^/gestioncorte/, roles: ROLE_ADMIN }    
+        - { path: ^/reservas, roles: ROLE_USER }  
+
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate

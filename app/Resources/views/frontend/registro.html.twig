@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'form/corteForm.html.twig' %}
+{% block title %}
+Registro de usuario
+{% endblock %}
+
+{% block body %}
+    <!-- Page Content -->
+    <div class="container">
+      <!-- Page Heading/Breadcrumbs -->
+      <h1 class="mt-4 mb-3">BarberZone
+        <small>Registro de usuario</small>
+        </h1>
+     <!-- Intro Content -->
+      <div class="row">
+        <div class="col-lg-7">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+        ¿Ya tienes una cuenta? <a href="{{ path('login') }}">Inicia sesión</a> ahora
+        </div>
+        <div class="col-lg-5">
+          <h2>¿Por qué registrarme?</h2>
+            <p>Al registrarte como usuario podrás realizar reservas a nuestra peluquería de una manera <strong>fácil y sencilla</strong>.</p>
+            <p>Mediante la introducción del correo electrónico y la contraseña, vas a poder realizar reservas o anulación de estas</p>
+            <p>¡Ya no deberás de preocuparte por la disponibilidad de un turno nunca más! Nosotros te mostramos <strong>todas las fechas</strong> y <strong>horas disponibles</strong> para que puedas elegir el horario que más te guste.</p>
+            <p>Sabemos que tu tiempo es importante y por eso, al registrarte, nuestra máxima prioridad es que tengas <strong>la mejor experiencia</strong> en la <strong>menor cantidad de tiempo</strong></p>
+        </div>
+      </div>        
+      </h1>
+    </div>
+{% endblock %}    

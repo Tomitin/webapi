@@ -74,18 +74,26 @@ class __TwigTemplate_5bb2d7e9f2e0db1d00a25b167f9e30baa213df44ee896a0bd12805d911e
         echo "<!-- page content -->
 <div class= \"container\">
 <h1 class \"mt-4 mb-3\">Nuevo Corte</h1>
+<p>¿Quieres crear una nueva herramienta? <a href=\"";
+        // line 11
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevaHerramienta");
+        echo "\"> Hazme click</a> </br>
+¿Quieres crear una nueva categoria? <a href=\"";
+        // line 12
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevaCat");
+        echo "\"> Hazme click</a>
     <div class= \"row\">
         <div class=\"col-md-8\">
         ";
-        // line 13
+        // line 15
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_start');
         echo "
         ";
-        // line 14
+        // line 16
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(($context["form"] ?? $this->getContext($context, "form")), 'widget');
         echo "
         ";
-        // line 15
+        // line 17
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_end');
         echo "
         </div>
@@ -100,7 +108,7 @@ class __TwigTemplate_5bb2d7e9f2e0db1d00a25b167f9e30baa213df44ee896a0bd12805d911e
 
     }
 
-    // line 21
+    // line 23
     public function block_javascripts($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -109,7 +117,7 @@ class __TwigTemplate_5bb2d7e9f2e0db1d00a25b167f9e30baa213df44ee896a0bd12805d911e
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 22
+        // line 24
         echo "<script type=\"text/javascript\" src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/nuevaImgCorte.js"), "html", null, true);
         echo "\"></script> 
@@ -134,7 +142,7 @@ class __TwigTemplate_5bb2d7e9f2e0db1d00a25b167f9e30baa213df44ee896a0bd12805d911e
 
     public function getDebugInfo()
     {
-        return array (  113 => 22,  104 => 21,  89 => 15,  85 => 14,  81 => 13,  74 => 8,  65 => 7,  54 => 4,  45 => 3,  35 => 1,  33 => 2,  11 => 1,);
+        return array (  121 => 24,  112 => 23,  97 => 17,  93 => 16,  89 => 15,  83 => 12,  79 => 11,  74 => 8,  65 => 7,  54 => 4,  45 => 3,  35 => 1,  33 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -157,6 +165,8 @@ nuevo corte
 <!-- page content -->
 <div class= \"container\">
 <h1 class \"mt-4 mb-3\">Nuevo Corte</h1>
+<p>¿Quieres crear una nueva herramienta? <a href=\"{{path('nuevaHerramienta')}}\"> Hazme click</a> </br>
+¿Quieres crear una nueva categoria? <a href=\"{{path('nuevaCat')}}\"> Hazme click</a>
     <div class= \"row\">
         <div class=\"col-md-8\">
         {{ form_start(form) }}

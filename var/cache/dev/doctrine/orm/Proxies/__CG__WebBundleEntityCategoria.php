@@ -64,10 +64,10 @@ class Categoria extends \WebBundle\Entity\Categoria implements \Doctrine\ORM\Pro
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'WebBundle\\Entity\\Categoria' . "\0" . 'id', '' . "\0" . 'WebBundle\\Entity\\Categoria' . "\0" . 'nombre', '' . "\0" . 'WebBundle\\Entity\\Categoria' . "\0" . 'descripcion', '' . "\0" . 'WebBundle\\Entity\\Categoria' . "\0" . 'foto', '' . "\0" . 'WebBundle\\Entity\\Categoria' . "\0" . 'cortes'];
+            return ['__isInitialized__', '' . "\0" . 'WebBundle\\Entity\\Categoria' . "\0" . 'id', '' . "\0" . 'WebBundle\\Entity\\Categoria' . "\0" . 'nombre', '' . "\0" . 'WebBundle\\Entity\\Categoria' . "\0" . 'descripcion', '' . "\0" . 'WebBundle\\Entity\\Categoria' . "\0" . 'cortes'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'WebBundle\\Entity\\Categoria' . "\0" . 'id', '' . "\0" . 'WebBundle\\Entity\\Categoria' . "\0" . 'nombre', '' . "\0" . 'WebBundle\\Entity\\Categoria' . "\0" . 'descripcion', '' . "\0" . 'WebBundle\\Entity\\Categoria' . "\0" . 'foto', '' . "\0" . 'WebBundle\\Entity\\Categoria' . "\0" . 'cortes'];
+        return ['__isInitialized__', '' . "\0" . 'WebBundle\\Entity\\Categoria' . "\0" . 'id', '' . "\0" . 'WebBundle\\Entity\\Categoria' . "\0" . 'nombre', '' . "\0" . 'WebBundle\\Entity\\Categoria' . "\0" . 'descripcion', '' . "\0" . 'WebBundle\\Entity\\Categoria' . "\0" . 'cortes'];
     }
 
     /**
@@ -230,28 +230,6 @@ class Categoria extends \WebBundle\Entity\Categoria implements \Doctrine\ORM\Pro
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDescripcion', []);
 
         return parent::getDescripcion();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setFoto($foto)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFoto', [$foto]);
-
-        return parent::setFoto($foto);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getFoto()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFoto', []);
-
-        return parent::getFoto();
     }
 
     /**

@@ -10,4 +10,13 @@ namespace WebBundle\Repository;
  */
 class CorteRepository extends \Doctrine\ORM\EntityRepository
 {
+    //funcion que devuelve las tapas para una pagina con un numero de elementos
+    public function paginaCortes($pagina=1,$numCortes=3){
+        $query = $this->createQueryBuilder('t')
+        ->where('t.top = 1')
+        ->setFirstResult($numCortes*($pagina-1))
+        ->setMaxResults($numCortes)
+        ->getQuery();
+    return $query->getResult();
+    }
 }

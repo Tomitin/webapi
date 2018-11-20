@@ -73,6 +73,37 @@ HOME
      
       </div>
       <!-- /.row -->
+      <!-- Pagination -->
+
+      <ul class="pagination justify-content-center">
+
+      {# Mostrando o no el 'siguiente' y 'anterior' #}
+
+        {% if paginaActual > 1 %}
+        <li class="page-item">
+          <a class="page-link" href="{{path('web_homepage',{pagina:paginaActual-1 < 1? 1:paginaActual-1 })}}" aria-label="Anterior">Anterior</a>
+        </li>
+        {% endif %}
+
+
+        {# Renderizar todos los enlaces a las páginas#}
+        {% for i in 1..3  %}
+        <li class="page-item">
+          <a class="page-link" href="{{path('web_homepage',{pagina:i})}}">{{i}}</a>
+        </li>
+        {% endfor %}
+        
+        
+        {% if paginaActual < 3 %}
+        <li class="page-item">
+          <a class="page-link" href="{{path('web_homepage',{pagina:paginaActual+1 <= 3? paginaActual+1:paginaActual })}}" aria-label="Posterior">Posterior</a>
+        </li>
+        {% endif %}
+
+          </a>
+        </li>
+      </ul>
+      
     </div>  
 
 {% endblock %}

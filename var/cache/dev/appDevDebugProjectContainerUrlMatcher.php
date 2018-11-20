@@ -107,81 +107,6 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        // web_homepage
-        if ('' === $trimmedPathinfo) {
-            $ret = array (  '_controller' => 'WebBundle\\Controller\\DefaultController::homepageAction',  '_route' => 'web_homepage',);
-            if ('/' === substr($pathinfo, -1)) {
-                // no-op
-            } elseif ('GET' !== $canonicalMethod) {
-                goto not_web_homepage;
-            } else {
-                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'web_homepage'));
-            }
-
-            return $ret;
-        }
-        not_web_homepage:
-
-        if (0 === strpos($pathinfo, '/c')) {
-            if (0 === strpos($pathinfo, '/corte')) {
-                // corte
-                if (preg_match('#^/corte/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'corte')), array (  '_controller' => 'WebBundle\\Controller\\DefaultController::corteAction',));
-                }
-
-                // corte2
-                if ('/corte' === $pathinfo) {
-                    return array (  '_controller' => 'WebBundle\\Controller\\DefaultController::corteAction',  '_route' => 'corte2',);
-                }
-
-            }
-
-            elseif (0 === strpos($pathinfo, '/contactar')) {
-                // contactar
-                if (preg_match('#^/contactar/(?P<sitio>[^/]++)$#sD', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'contactar')), array (  '_controller' => 'WebBundle\\Controller\\DefaultController::contactarAction',));
-                }
-
-                // contactar2
-                if ('/contactar' === $pathinfo) {
-                    return array (  '_controller' => 'WebBundle\\Controller\\DefaultController::contactarAction',  '_route' => 'contactar2',);
-                }
-
-            }
-
-            elseif (0 === strpos($pathinfo, '/categoria')) {
-                // categoria
-                if (preg_match('#^/categoria/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'categoria')), array (  '_controller' => 'WebBundle\\Controller\\DefaultController::categoriaAction',));
-                }
-
-                // categoria2
-                if ('/categoria' === $pathinfo) {
-                    return array (  '_controller' => 'WebBundle\\Controller\\DefaultController::categoriaAction',  '_route' => 'categoria2',);
-                }
-
-            }
-
-        }
-
-        elseif (0 === strpos($pathinfo, '/herramienta')) {
-            // herramienta
-            if (preg_match('#^/herramienta/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'herramienta')), array (  '_controller' => 'WebBundle\\Controller\\DefaultController::herramientaAction',));
-            }
-
-            // herramienta2
-            if ('/herramienta' === $pathinfo) {
-                return array (  '_controller' => 'WebBundle\\Controller\\DefaultController::herramientaAction',  '_route' => 'herramienta2',);
-            }
-
-        }
-
-        // nosotros
-        if ('/nosotros' === $pathinfo) {
-            return array (  '_controller' => 'WebBundle\\Controller\\DefaultController::nosotrosAction',  '_route' => 'nosotros',);
-        }
-
         // welcome
         if ('' === $trimmedPathinfo) {
             $ret = array (  '_controller' => 'WebBundle\\Controller\\DefaultController::homepageAction',  '_route' => 'welcome',);
@@ -197,7 +122,86 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
         not_welcome:
 
-        if (0 === strpos($pathinfo, '/gestioncorte/nuev')) {
+        // web_homepage
+        if (preg_match('#^/(?P<pagina>\\d+)$#sD', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'web_homepage')), array (  '_controller' => 'WebBundle\\Controller\\DefaultController::homepageAction',));
+        }
+
+        // nosotros
+        if ('/nosotros' === $pathinfo) {
+            return array (  '_controller' => 'WebBundle\\Controller\\DefaultController::nosotrosAction',  '_route' => 'nosotros',);
+        }
+
+        // registro
+        if ('/registro' === $pathinfo) {
+            return array (  '_controller' => 'WebBundle\\Controller\\DefaultController::registroAction',  '_route' => 'registro',);
+        }
+
+        if (0 === strpos($pathinfo, '/reservas')) {
+            // nuevaReserva
+            if (0 === strpos($pathinfo, '/reservas/nueva') && preg_match('#^/reservas/nueva(?:/(?P<id>[^/]++))?$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'nuevaReserva')), array (  '_controller' => 'WebBundle\\Controller\\GestionReservasController::nuevaReservaAction',  'id' => NULL,));
+            }
+
+            // borrarReserva
+            if (0 === strpos($pathinfo, '/reservas/borrar') && preg_match('#^/reservas/borrar(?:/(?P<id>[^/]++))?$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'borrarReserva')), array (  '_controller' => 'WebBundle\\Controller\\GestionReservasController::borrarReservaAction',  'id' => NULL,));
+            }
+
+            // reservas
+            if ('/reservas/reservas' === $pathinfo) {
+                return array (  '_controller' => 'WebBundle\\Controller\\GestionReservasController::reservasAction',  '_route' => 'reservas',);
+            }
+
+        }
+
+        // login
+        if ('/login' === $pathinfo) {
+            return array (  '_controller' => 'WebBundle\\Controller\\DefaultController::loginAction',  '_route' => 'login',);
+        }
+
+        // logout
+        if ('/logout' === $trimmedPathinfo) {
+            $ret = array('_route' => 'logout');
+            if ('/' === substr($pathinfo, -1)) {
+                // no-op
+            } elseif ('GET' !== $canonicalMethod) {
+                goto not_logout;
+            } else {
+                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'logout'));
+            }
+
+            return $ret;
+        }
+        not_logout:
+
+        if (0 === strpos($pathinfo, '/contactar')) {
+            // contactar
+            if (preg_match('#^/contactar/(?P<sitio>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'contactar')), array (  '_controller' => 'WebBundle\\Controller\\DefaultController::contactarAction',));
+            }
+
+            // contactar2
+            if ('/contactar' === $pathinfo) {
+                return array (  '_controller' => 'WebBundle\\Controller\\DefaultController::contactarAction',  '_route' => 'contactar2',);
+            }
+
+        }
+
+        elseif (0 === strpos($pathinfo, '/corte')) {
+            // corte
+            if (preg_match('#^/corte/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'corte')), array (  '_controller' => 'WebBundle\\Controller\\DefaultController::corteAction',));
+            }
+
+            // corte2
+            if ('/corte' === $pathinfo) {
+                return array (  '_controller' => 'WebBundle\\Controller\\DefaultController::corteAction',  '_route' => 'corte2',);
+            }
+
+        }
+
+        elseif (0 === strpos($pathinfo, '/gestioncorte/nuev')) {
             // nuevoCorte
             if ('/gestioncorte/nuevocorte' === $pathinfo) {
                 return array (  '_controller' => 'WebBundle\\Controller\\GestionCortesController::nuevoCorteAction',  '_route' => 'nuevoCorte',);
@@ -213,6 +217,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 return array (  '_controller' => 'WebBundle\\Controller\\GestionCortesController::nuevaHerramientaAction',  '_route' => 'nuevaHerramienta',);
             }
 
+        }
+
+        // gestionReserva
+        if ('/gestionreservas/reservas' === $pathinfo) {
+            return array (  '_controller' => 'WebBundle\\Controller\\GestionCortesController::gestionReservaAction',  '_route' => 'gestionReserva',);
         }
 
         // homepage

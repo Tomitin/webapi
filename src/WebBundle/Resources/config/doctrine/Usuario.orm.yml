@@ -1,0 +1,32 @@
+WebBundle\Entity\Usuario:
+    type: entity
+    table: null
+    repositoryClass: WebBundle\Repository\UsuarioRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        username:
+            type: string
+            length: '254'
+            unique: true
+        password:
+            type: string
+            length: '64'
+        email:
+            type: string
+            length: '254'
+            unique: true
+        isActive:
+            type: boolean
+        roles:
+            type: string
+            length: '256' 
+    oneToMany:
+        reservas:
+            targetEntity: WebBundle\Entity\Reserva
+            mappedBy: usuario                                        
+    lifecycleCallbacks: {  }

@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+Reservas
+{% endblock %}
+{% block body %}
+
+<div class="container">
+    <h1 class="mt-4 mb-3"><center>Reservas</center></h1>
+
+    <div class="row">
+     <div class="col-md-2">
+     </div>
+     <div class="col-md-8">
+      <table class="table table-hover">
+       <thead class= "thead bg-info">
+        <tr>
+            <th scope="col">Editar</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Horario</th>
+            <th scope="col">Num. asistentes</th>
+            <th scope="col">Observaciones</th>
+            <th scope="col">Borrar</th>
+        </tr>
+       </thead>
+       <tbody>
+            {% for reserva in reservas %} 
+            <tr>
+                <th scope="row"><a href="{{ path('nuevaReserva',{'id':reserva.id } ) }}"><i class="fas fa-edit"></i></a></th>
+                <td>{{reserva.fecha|date('d/m/Y')}}</td>
+                <td>{{reserva.horario|date('H:i A')}}</td>        
+                <td>{{reserva.comensales}}</td>
+                <td>{{reserva.observaciones}}</td>
+                <th scope="row" ><a href="#" onclick="return controlBorrado('{{ path('borrarReserva',{'id':reserva.id } ) }}','{{reserva.fecha|date('d/m/Y H:i A')}}');">
+                <i class="fas fa-trash-alt" ></i></a></th>
+                {# lo que hace el onclick es llevar a web/js/controlBorrado y ejecutar las animaciones de borrado mediante dos parametros con el '' para pasarlos como string #}
+            </tr>
+            {% endfor %}    
+        </tbody>
+      </table>
+      </div>
+      <div class="col-md-2">
+            <table class="table table-bordered table-hover ">
+            <thead class= "thead bg-info">
+        <tr>
+            <th scope="col">Ocupado</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Horario</th>
+        </tr>
+       </thead>
+
+       <tbody>
+            {% for ocupado in ocupados|sort  %} 
+            {% for reserva in reservas|slice(0,1)|sort %} 
+            <tr>
+                {% if ocupado == reserva %}
+                <td class="bg-success"></td>
+                <td class="bg-success">{{ocupado.fecha|date('d/m/Y')}}</td>
+                <td class="bg-success">{{ocupado.horario|date('H:i A')}}</td>  
+                {% endif %}
+                {% if ocupado != reserva %}
+                <td></td>
+                <td>{{ocupado.fecha|date('d/m/Y')}}</td>
+                <td>{{ocupado.horario|date('H:i A')}}</td>  
+                {% endif %}
+            </tr>
+            {% endfor %}    
+            {% endfor %}    
+       </tbody>
+      </table>
+      </div>  
+      <h5>¿Qué es todo esto? 
+      <p>En el <strong>medio</strong>, se encuentran tus reservas que están en proceso de ser autorizadas, es decir, en <strong>pendiente.</strong>
+      </div>
+      </div>    
+      {% endblock %}
+      {% block javascripts %}
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <script src="{{asset('js/controlBorrado.js') }}"></script>
+      {% endblock %}

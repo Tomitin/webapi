@@ -172,6 +172,69 @@ class __TwigTemplate_5f3aba7d8bb7b0828836457bb20580893a7f1bafa8717f77f5f827e4fba
         echo "     
       </div>
       <!-- /.row -->
+      <!-- Pagination -->
+
+      <ul class=\"pagination justify-content-center\">
+
+      ";
+        // line 81
+        echo "
+        ";
+        // line 82
+        if ((($context["paginaActual"] ?? $this->getContext($context, "paginaActual")) > 1)) {
+            // line 83
+            echo "        <li class=\"page-item\">
+          <a class=\"page-link\" href=\"";
+            // line 84
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("web_homepage", array("pagina" => ((((($context["paginaActual"] ?? $this->getContext($context, "paginaActual")) - 1) < 1)) ? (1) : ((($context["paginaActual"] ?? $this->getContext($context, "paginaActual")) - 1))))), "html", null, true);
+            echo "\" aria-label=\"Anterior\">Anterior</a>
+        </li>
+        ";
+        }
+        // line 87
+        echo "
+
+        ";
+        // line 90
+        echo "        ";
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable(range(1, 3));
+        foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
+            // line 91
+            echo "        <li class=\"page-item\">
+          <a class=\"page-link\" href=\"";
+            // line 92
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("web_homepage", array("pagina" => $context["i"])), "html", null, true);
+            echo "\">";
+            echo twig_escape_filter($this->env, $context["i"], "html", null, true);
+            echo "</a>
+        </li>
+        ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 95
+        echo "        
+        
+        ";
+        // line 97
+        if ((($context["paginaActual"] ?? $this->getContext($context, "paginaActual")) < 3)) {
+            // line 98
+            echo "        <li class=\"page-item\">
+          <a class=\"page-link\" href=\"";
+            // line 99
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("web_homepage", array("pagina" => ((((($context["paginaActual"] ?? $this->getContext($context, "paginaActual")) + 1) <= 3)) ? ((($context["paginaActual"] ?? $this->getContext($context, "paginaActual")) + 1)) : (($context["paginaActual"] ?? $this->getContext($context, "paginaActual")))))), "html", null, true);
+            echo "\" aria-label=\"Posterior\">Posterior</a>
+        </li>
+        ";
+        }
+        // line 102
+        echo "
+          </a>
+        </li>
+      </ul>
+      
     </div>  
 
 ";
@@ -195,7 +258,7 @@ class __TwigTemplate_5f3aba7d8bb7b0828836457bb20580893a7f1bafa8717f77f5f827e4fba
 
     public function getDebugInfo()
     {
-        return array (  172 => 73,  160 => 67,  153 => 65,  139 => 62,  129 => 57,  101 => 32,  91 => 25,  81 => 18,  70 => 9,  61 => 8,  50 => 4,  41 => 3,  11 => 1,);
+        return array (  233 => 102,  227 => 99,  224 => 98,  222 => 97,  218 => 95,  207 => 92,  204 => 91,  199 => 90,  195 => 87,  189 => 84,  186 => 83,  184 => 82,  181 => 81,  172 => 73,  160 => 67,  153 => 65,  139 => 62,  129 => 57,  101 => 32,  91 => 25,  81 => 18,  70 => 9,  61 => 8,  50 => 4,  41 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -283,6 +346,37 @@ HOME
      
       </div>
       <!-- /.row -->
+      <!-- Pagination -->
+
+      <ul class=\"pagination justify-content-center\">
+
+      {# Mostrando o no el 'siguiente' y 'anterior' #}
+
+        {% if paginaActual > 1 %}
+        <li class=\"page-item\">
+          <a class=\"page-link\" href=\"{{path('web_homepage',{pagina:paginaActual-1 < 1? 1:paginaActual-1 })}}\" aria-label=\"Anterior\">Anterior</a>
+        </li>
+        {% endif %}
+
+
+        {# Renderizar todos los enlaces a las páginas#}
+        {% for i in 1..3  %}
+        <li class=\"page-item\">
+          <a class=\"page-link\" href=\"{{path('web_homepage',{pagina:i})}}\">{{i}}</a>
+        </li>
+        {% endfor %}
+        
+        
+        {% if paginaActual < 3 %}
+        <li class=\"page-item\">
+          <a class=\"page-link\" href=\"{{path('web_homepage',{pagina:paginaActual+1 <= 3? paginaActual+1:paginaActual })}}\" aria-label=\"Posterior\">Posterior</a>
+        </li>
+        {% endif %}
+
+          </a>
+        </li>
+      </ul>
+      
     </div>  
 
 {% endblock %}", "frontend/index.html.twig", "/home/tomy/webapi/app/Resources/views/frontend/index.html.twig");

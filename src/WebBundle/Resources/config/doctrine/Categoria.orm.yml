@@ -14,9 +14,6 @@ WebBundle\Entity\Categoria:
             length: '128'
         descripcion:
             type: text
-        foto:
-            type: string
-            length: '255'
     oneToMany:
         cortes:
             targetEntity: Corte

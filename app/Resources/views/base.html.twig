@@ -8,6 +8,7 @@
         <!-- Bootstrap core CSS -->
         <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
         <!-- Custom styles for this template -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <link href="{{ asset('css/modern-business.css') }}" rel="stylesheet">
         
         {% block stylesheets %}{% endblock %}
@@ -22,15 +23,23 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
+          
+              {% if is_granted('ROLE_ADMIN') %}
+
+                <li class="nav-item">
+                <a class="nav-link text-warning" href="{{path('nuevoCorte')}}">Nuevo corte</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-warning" href="{{path('gestionReserva')}}">Gestión reservas</a>
+                </li>
+
+              {% endif %}
+
             <li class="nav-item">
               <a class="nav-link" href="{{ path('nosotros') }}">Nosotros</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Servicios</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contacto</a>
-            </li>
+
+
              <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Ubicanos en
@@ -40,7 +49,33 @@
                     <a class="dropdown-item" href="{{ path('contactar',{'sitio': 'scl'}) }}">Santa Clara</a>
                     <a class="dropdown-item" href="{{ path('contactar',{'sitio': 'pin'}) }}">Pinamar</a>
                     </div>
-            </li>      
+            </li> 
+
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">Cortes</a>
+              </li>
+
+              {% if app.user  %}  
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Reservas
+                </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{{ path('nuevaReserva') }}">Nueva</a>
+                    <a class="dropdown-item" href="{{ path('reservas') }}">Lista</a>
+                    </div>
+                </li> 
+                <li class="nav-item">
+                <a class="nav-link" href="{{ path('logout') }}">Salir</a>
+                </li>
+              {% else %}
+                <li class="nav-item">
+                <a class="nav-link" href="{{path('login')}}">Reservas</a>
+                </li>
+              {% endif %}  
+
+            </li>     
           </ul>
         </div>
       </div>
@@ -55,11 +90,9 @@
         </footer>
 
         <!-- Bootstrap Core Javascript -->
-        
-        <script src="{{ asset('vendor/jquery/jquery.slim.min.js') }}"</script>
-        <script src="{{ asset('vendor/ajax/popper.min.js') }}"</script>
-        <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"</script>
-        <script src="{{ asset('vendor/jquery/jquery.min.js') }}"</script>
+        <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
 
         {% block javascripts %}{% endblock %}
     </body>

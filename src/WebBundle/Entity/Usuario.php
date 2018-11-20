@@ -1,0 +1,215 @@
+<?php
+
+
+namespace WebBundle\Entity;
+
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Usuario
+ */
+class Usuario implements UserInterface, \Serializable
+{
+    /**
+     * @var int
+     */
+    private $id;
+    
+    /**
+     * @var string
+     */
+    private $username;
+
+    /**
+     * @var string
+     */
+    private $plainPassword;
+
+    /**
+     * @var string
+     */
+    private $password;
+    
+    /**
+     * @var string
+     */
+    private $email;
+    
+    /**
+     * @var bool
+     */
+    private $isActive;
+
+    /**
+     * @var string
+     */
+    private $roles;
+
+    private $reservas;
+    
+    public function __construct()
+    {
+        $this->isActive = true;
+        // may not be needed, see section on salt below
+        // $this->salt = md5(uniqid('', true));
+        $this->products = new ArrayCollection();
+    }
+
+    public function setUsername($username)
+    {
+        return $this->username=$username;
+    }
+
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        return $this->email=$email;
+    }
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    public function setPassword($password)
+    {
+        return $this->password=$password;
+    }
+
+    public function setRoles($roles)
+    {
+        $roles_json=json_encode($roles);
+        return $this->roles=$roles_json;
+    }
+
+    public function getRoles()
+    {
+        $roles=json_decode($this->roles);
+        return $roles;
+    }
+
+
+    public function eraseCredentials()
+    {
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized, array('allowed_classes' => false));
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     *
+     * @return Usuario
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * Add reserva
+     *
+     * @param \WebBundle\Entity\Reserva $reserva
+     *
+     * @return Usuario
+     */
+    public function addReserva(\WebBundle\Entity\Reserva $reserva)
+    {
+        $this->reservas[] = $reserva;
+
+        return $this;
+    }
+
+    /**
+     * Remove reserva
+     *
+     * @param \WebBundle\Entity\Reserva $reserva
+     */
+    public function removeReserva(\WebBundle\Entity\Reserva $reserva)
+    {
+        $this->reservas->removeElement($reserva);
+    }
+
+    /**
+     * Get reservas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReservas()
+    {
+        return $this->reservas;
+    }
+}

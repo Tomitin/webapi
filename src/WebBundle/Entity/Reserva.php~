@@ -1,0 +1,114 @@
+<?php
+
+namespace WebBundle\Entity;
+
+/**
+ * Reserva
+ */
+class Reserva
+{
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     */
+    private $fecha;
+
+    /**
+     * @var int
+     */
+    private $comensales;
+
+    /**
+     * @var string
+     */
+    private $observaciones;
+
+    private $usuario;
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set fecha
+     *
+     * @param \DateTime $fecha
+     *
+     * @return Reserva
+     */
+    public function setFecha($fecha)
+    {
+        $this->fecha = $fecha;
+
+        return $this;
+    }
+
+    /**
+     * Get fecha
+     *
+     * @return \DateTime
+     */
+    public function getFecha()
+    {
+        return $this->fecha;
+    }
+
+    /**
+     * Set comensales
+     *
+     * @param integer $comensales
+     *
+     * @return Reserva
+     */
+    public function setComensales($comensales)
+    {
+        $this->comensales = $comensales;
+
+        return $this;
+    }
+
+    /**
+     * Get comensales
+     *
+     * @return int
+     */
+    public function getComensales()
+    {
+        return $this->comensales;
+    }
+
+    /**
+     * Set observaciones
+     *
+     * @param string $observaciones
+     *
+     * @return Reserva
+     */
+    public function setObservaciones($observaciones)
+    {
+        $this->observaciones = $observaciones;
+
+        return $this;
+    }
+
+    /**
+     * Get observaciones
+     *
+     * @return string
+     */
+    public function getObservaciones()
+    {
+        return $this->observaciones;
+    }
+}
+

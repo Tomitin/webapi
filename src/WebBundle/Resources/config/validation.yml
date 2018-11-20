@@ -1,0 +1,24 @@
+WebBundle\Entity\Usuario:
+    properties:
+        plainPassword:
+            - NotBlank: ~
+            - Length:
+                max: 4096
+WebBundle\Entity\Reserva:
+    properties:
+        comensales:
+            - Range:
+                min: 1
+                max: 3
+                minMessage: Debes de ingresar al menos {{ limit }} persona/s
+                maxMessage: No puedes ingresar mas de  {{ limit }} personas
+        fecha:
+            - Range:
+                min: -1 day 
+                max: +21 days          
+                minMessage:  La fecha debe ser a partir de hoy
+                maxMessage: La fecha límite para reservar es de  {{ limit }}
+        horario:
+            - Time: ~
+
+

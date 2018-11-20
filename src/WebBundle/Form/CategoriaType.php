@@ -20,9 +20,6 @@ class CategoriaType extends AbstractType
         $builder
         ->add('nombre',TextType::class)
         ->add('descripcion',CKEditorType::class)
-        ->add('foto',FileType::class,array(
-            'attr' =>array(
-                'onchange'=>'onChange(event)')))
         ->add('guardar',SubmitType::class, array(
             'label'=>'Nueva Categoria'));
     }

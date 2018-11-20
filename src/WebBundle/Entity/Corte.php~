@@ -238,4 +238,38 @@ class Corte
         return $this->cortes;
     }
 
+
+    /**
+     * Add herramienta
+     *
+     * @param \WebBundle\Entity\Herramienta $herramienta
+     *
+     * @return Corte
+     */
+    public function addHerramienta(\WebBundle\Entity\Herramienta $herramienta)
+    {
+        $this->herramientas[] = $herramienta;
+
+        return $this;
+    }
+
+    /**
+     * Remove herramienta
+     *
+     * @param \WebBundle\Entity\Herramienta $herramienta
+     */
+    public function removeHerramienta(\WebBundle\Entity\Herramienta $herramienta)
+    {
+        $this->herramientas->removeElement($herramienta);
+    }
+
+    /**
+     * Get herramientas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getHerramientas()
+    {
+        return $this->herramientas;
+    }
 }

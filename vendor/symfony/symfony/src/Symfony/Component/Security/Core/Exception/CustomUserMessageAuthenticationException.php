@@ -41,8 +41,9 @@ class CustomUserMessageAuthenticationException extends AuthenticationException
      */
     public function setSafeMessage($messageKey, array $messageData = array())
     {
+
         $this->messageKey = $messageKey;
-        $this->messageData = $messageData;
+        $this->messageData = $messageData ;
     }
 
     public function getMessageKey()

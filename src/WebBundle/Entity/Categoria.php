@@ -25,11 +25,6 @@ class Categoria
      */
     private $descripcion;
 
-    /**
-     * @var string
-     */
-    private $foto;
-
     private $cortes;
 
     public function __construct()
@@ -95,29 +90,6 @@ class Categoria
         return $this->descripcion;
     }
 
-    /**
-     * Set foto
-     *
-     * @param string $foto
-     *
-     * @return Categoria
-     */
-    public function setFoto($foto)
-    {
-        $this->foto = $foto;
-
-        return $this;
-    }
-
-    /**
-     * Get foto
-     *
-     * @return string
-     */
-    public function getFoto()
-    {
-        return $this->foto;
-    }
 
     /**
      * Add corte

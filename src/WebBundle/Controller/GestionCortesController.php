@@ -62,10 +62,6 @@ class GestionCortesController extends Controller
     }
 
 
-
-
-
-
     /**
      * @return string
      */
@@ -76,10 +72,13 @@ class GestionCortesController extends Controller
         return md5(uniqid());
     }
 
-    
-    
-
-    
+        /**
+     * Convierte las tildes de un texto a sus entidades HTML.
+     * 
+     * @param string $cadena Cadena a modificar.
+     * @return string Cadena de texto con codigos html.
+     */
+      
     public function nuevaCatAction(Request $request)
     {              
         $categoria = new Categoria();
@@ -92,34 +91,17 @@ class GestionCortesController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             $categoria = $form->getData();
-            $fotoFile = $categoria->getFoto();
-            $fileName = $this->generateUniqueFileName().'.'.$fotoFile->guessExtension();
-            // Move the file to the directory where brochures are stored
-            try{
-                $fotoFile->move(
-                    $this->getParameter('corteImg_directory'),
-                    $fileName
-                );  
-            }  catch (FileException $e) {
-                // ... handle exception if something happens during file upload
-            } 
-            $categoria->setFoto($fileName);
-             // $form->getData() holds the submitted values
-             // but, the original `$corte` variable has also been updated    
-            // ... perform some action, such as saving the corte to the database
-            // for example, if corte is a Doctrine entity, save it!
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($categoria);
             $entityManager->flush();
                 // corte viene de la BD
-            return $this->redirectToRoute('categoria', array('id' => $categoria->getId() ));
+            return $this->redirectToRoute('nuevoCorte');
         }
     return $this->render('gestionCortes/nuevaCategoria.html.twig',array(
         'form'=>$form->createView()
     ));
     }
 
-    
     
 
     
@@ -139,10 +121,16 @@ class GestionCortesController extends Controller
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($herramienta);
             $entityManager->flush();
-            return $this->redirectToRoute('herramienta', array('id' => $herramienta->getId() ));
+            return $this->redirectToRoute('nuevoCorte');
         }
     return $this->render('gestionCortes/nuevaHerramienta.html.twig',array(
         'form'=>$form->createView()
     ));
     }
+
+    public function gestionReservaAction()
+    {
+        return $this->render('gestionCortes/gestionReserva.html.twig');
+    }
+
 }    

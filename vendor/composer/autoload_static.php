@@ -60,6 +60,7 @@ class ComposerStaticInitd52ade434dbf9c84e2cdda1ed29c43db
         ),
         'I' => 
         array (
+            'Ivory\\FormExtraBundle\\' => 22,
             'Incenteev\\ParameterHandler\\' => 27,
         ),
         'F' => 
@@ -186,6 +187,10 @@ class ComposerStaticInitd52ade434dbf9c84e2cdda1ed29c43db
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Ivory\\FormExtraBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/egeloen/form-extra-bundle',
         ),
         'Incenteev\\ParameterHandler\\' => 
         array (

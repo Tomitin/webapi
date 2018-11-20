@@ -2,6 +2,9 @@ web:
     resource: "@WebBundle/Resources/config/routing.yml"
     prefix:   /
 
+logout:
+    path: /logout/    
+    
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
